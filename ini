@@ -1,0 +1,37 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class String {
+private:
+    string data_;
+    static size_t objectCount_;
+
+public:
+    String() : data_(80) {
+        objectCount_++;
+    }
+    String(size_t size) : data_(size) {
+        objectCount_++;
+    }
+    String(const string& str) : data_(str) {
+        objectCount_++;
+    }
+    ~String() {
+        objectCount_--;
+    }
+
+    void input() {
+        cout << "Enter a string: ";
+        getline(cin, data_);
+    }
+    void output() const {
+        cout << data_ << endl;
+    }
+    static size_t getObjectCount() {
+        return objectCount_;
+    }
+};
+
+size_t String::objectCount_ = 0;
